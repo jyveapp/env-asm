@@ -1,0 +1,8 @@
+_extensions:
+- jinja2_time.TimeExtension
+_template: git@github.com:jyveapp/private-python-library-template.git
+_version: 56971a76b6b9d6f6cdaac04feb150ff28e4c3b2b
+module_name: env_asm
+repo_name: env-asm
+short_description: Run a process with environment variables fetched from AWS Secrets
+  Manager
