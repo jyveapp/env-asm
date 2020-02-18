@@ -12,7 +12,7 @@ name = "env-asm"
 packages = [
   { include = "env_asm" }
 ]
-version = "0.0.0"
+version = "0.1.0"
 description = "Run a process with environment variables fetched from AWS Secrets Manager"
 authors = ["Jyve Engineering"]
 classifiers = [
