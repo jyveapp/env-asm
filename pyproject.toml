@@ -21,10 +21,11 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
+boto3 = ">1.9"
+click = "^7.0"
 
 [tool.poetry.dev-dependencies]
 black = "=19.3b0"
-boto3 = "=1.9.243"
 flake8 = "=3.7.8"
 flake8-bugbear = "=19.8.0"
 flake8-comprehensions = "=2.2.0"
@@ -41,7 +42,12 @@ requests = "^2.22.0"
 Sphinx = "=1.6.6"
 sphinx-rtd-theme = "=0.2.4"
 temple = "*"
+moto = {extras = ["server"], version = "^1.3.14"}
+pytest-mock = "^2.0.0"
 
 [[tool.poetry.source]]
 name = "jyve"
 url = "https://pypi.fury.io/jyve"
+
+[tool.poetry.scripts]
+env-asm = 'env_asm.cli:main'
