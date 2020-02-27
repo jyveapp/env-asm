@@ -1,4 +1,10 @@
 # Changelog
+## 0.2.0 (2020-02-27)
+### Feature
+  - Add List Secrets Functionality [Will Chertoff, 500fea8]
+
+    If no args are provided (i.e. ``env-asm``), list all the secrets the caller has access to see. If a secret is provided without a command (i.e. ``env-asm <secret_name>``, print the contents of the secret.
+
 ## 0.1.0 (2020-02-18)
 ### Feature
   - V1 Release [Will Chertoff, 62c955a]
