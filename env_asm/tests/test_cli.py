@@ -42,7 +42,37 @@ def test_main(mocker):
 
 
 @moto.mock_secretsmanager
-def test_main_wo_command(mocker, mock_exit):
+@pytest.mark.usefixtures('mock_successful_exit')
+def test_main_wo_command(mocker, capsys):
+    conn = boto3.client('secretsmanager', region_name='us-west-2')
+
+    conn.create_secret(
+        Name='secret-name1',
+        SecretString=json.dumps(
+            {'env_var1': 'env_val1', 'env_var2': 'env_val2'}
+        ),
+    )
     mocker.patch.object(sys, 'argv', ['env-asm', 'secret-name1'])
     cli.main()
-    mock_exit.assert_called_once_with(1)
+    captured_stdout = capsys.readouterr()
+    assert (
+        captured_stdout.out
+        == '{"env_var1": "env_val1", "env_var2": "env_val2"}\n'
+    )
+
+
+@moto.mock_secretsmanager
+@pytest.mark.usefixtures('mock_successful_exit')
+def test_main_wo_secret_name(mocker, capsys):
+    conn = boto3.client('secretsmanager', region_name='us-west-2')
+
+    conn.create_secret(
+        Name='secret-name1',
+        SecretString=json.dumps(
+            {'env_var1': 'env_val1', 'env_var2': 'env_val2'}
+        ),
+    )
+    mocker.patch.object(sys, 'argv', ['env-asm'])
+    cli.main()
+    captured_stdout = capsys.readouterr()
+    assert captured_stdout.out == 'secret-name1\n'
